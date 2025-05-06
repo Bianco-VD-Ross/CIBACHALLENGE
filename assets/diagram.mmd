@@ -1,0 +1,16 @@
+graph TD
+    A[User Uploads Invoice] --> B[Flask API Service]
+    B --> C[Save to inbox/]
+    B --> D[Publish message to RabbitMQ]
+    D --> E[OCR Worker (Tesseract)]
+    E --> F[Extract Fields: Invoice No, Vendor, Date, Total]
+
+    F --> G{All Fields Present?}
+    G -- Yes --> H[Insert into PostgreSQL]
+    G -- Yes --> I[Move to processed/ folder]
+    G -- No  --> J[Move to unprocessed/ folder]
+
+    style A fill:#f9f,stroke:#333,stroke-width:1px
+    style J fill:#fdd,stroke:#f66,stroke-width:1px
+    style I fill:#dfd,stroke:#393,stroke-width:1px
+    style H fill:#ddf,stroke:#44f,stroke-width:1px

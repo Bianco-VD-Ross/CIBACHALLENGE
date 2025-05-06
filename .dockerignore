@@ -1,0 +1,13 @@
+__pycache__/        # Python bytecode cache
+*.pyc               # Python compiled files
+*.pyo               # Alternate Python compiled files
+.env                # Local environment variables (never expose secrets)
+*.log               # Local log files
+
+samples/            # Sample invoice images (not needed in container)
+tests/              # Tests are not required inside the container
+
+.vscode/            # Editor-specific configs
+*.md                # Docs like README, not needed at runtime
+.DS_Store           # macOS junk files
+Thumbs.db           # Windows junk files

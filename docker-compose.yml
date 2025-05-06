@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: invoice-ocr-pipeline-rabbitmq-1
+    ports:
+      - "5672:5672"     # for RabbitMQ messaging
+      - "15672:15672"   # for RabbitMQ UI
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: pass
+
+  postgres:
+    image: postgres:14
+    container_name: invoice-ocr-pipeline-postgres-1
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: invoices
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  ocr-worker:
+    build: ./src/
+    container_name: invoice-ocr-pipeline-ocr-worker-1
+    command: python ocr_worker.py
+    depends_on:
+      - rabbitmq
+      - postgres
+    volumes:
+      - ./inbox:/app/inbox
+      - ./processed:/app/processed
+      - ./unprocessed:/app/unprocessed  # 👈 New mount for unprocessable files
+
+  flask-api:
+    build: ./src/
+    container_name: invoice-ocr-pipeline-flask-api-1
+    command: python app.py
+    ports:
+      - "5000:5000"
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./inbox:/app/inbox
+      - ./processed:/app/processed
+
+volumes:
+  pgdata:
