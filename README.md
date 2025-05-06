@@ -165,7 +165,7 @@ We tested:
 ## Potential Enhancements
 
 - Add image preprocessing for OCR accuracy (thresholding, denoise)
-- Support for multipage PDF invoices
+- Support for multipage Images invoices
 - UI for uploading and reviewing invoice status
 - Email or Slack notifications for files routed to `unprocessed/`
 - Add user authentication and token-based upload support
