@@ -170,9 +170,11 @@ We tested:
 - Email or Slack notifications for files routed to `unprocessed/`
 - Add user authentication and token-based upload support
 
-## System Diagram
+### System Diagram
 
-See `assets/pipeline.png` for a diagram showing how each service connects and communicates.
+The following image shows how each service connects and communicates:
+
+![Pipeline Diagram](assets/pipeline.png)
 
 ## Conclusion
 
