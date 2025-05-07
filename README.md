@@ -176,6 +176,21 @@ The following image shows how each service connects and communicates:
 
 ![Pipeline Diagram](assets/pipeline.png)
 
+User
+ │
+ ▼
+Flask API (/upload)
+ │
+ ▼
+RabbitMQ Queue (invoice_queue)
+ │
+ ▼
+OCR Worker
+ ├── Tesseract OCR
+ ├── Field Validation
+ └── PostgreSQL + Folder Routing
+
+
 ## Conclusion
 
 This project started with a simple idea and evolved into something far more production-conscious. We didn’t just throw code at the wall and hope it stuck — we broke things, patched them up, made things weird on purpose, and made sure the system stayed solid through it all. The `unprocessed/` logic didn’t exist when we started, but became a key component through iterative testing and validation.
