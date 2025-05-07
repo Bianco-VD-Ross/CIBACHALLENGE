@@ -10,7 +10,7 @@ from pdf2image import convert_from_path
 # === Directory Configs ===
 INBOX_DIR = 'inbox'
 PROCESSED_DIR = 'processed'
-UNPROCESSED_DIR = 'unprocessed'  # ✅ Replaces 'failed'
+UNPROCESSED_DIR = 'unprocessed' 
 
 # Ensure folders exist
 for folder in [INBOX_DIR, PROCESSED_DIR, UNPROCESSED_DIR]:
