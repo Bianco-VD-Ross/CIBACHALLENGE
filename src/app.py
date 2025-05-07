@@ -1,4 +1,3 @@
-# src/app.py
 # REST API: Uploads invoice image to 'inbox' and pushes message to RabbitMQ
 
 import os
