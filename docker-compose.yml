@@ -33,7 +33,7 @@ services:
     volumes:
       - ./inbox:/app/inbox
       - ./processed:/app/processed
-      - ./unprocessed:/app/unprocessed  # 👈 New mount for unprocessable files
+      - ./unprocessed:/app/unprocessed  # New mount for unprocessable files
 
   flask-api:
     build: ./src/
